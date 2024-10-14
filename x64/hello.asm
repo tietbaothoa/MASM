@@ -11,7 +11,7 @@ extrn ExitProcess	:PROC
 .code 
 main PROC
 	mov		rbp, rsp
-	sub		rsp, 20h
+	sub		rsp, 28h
 
 	mov		rcx, -11			;shadow space + align
 	call	GetStdHandle		;return handle rax
@@ -20,8 +20,7 @@ main PROC
 	mov		rdx, offset msg		
 	mov     r8, sizeof msg		;lenght str
 	mov		r9, offset nByte	;return value agrument
-;	push	rbx
-	mov		[rsp - 38h], rbx	
+	mov		[rsp + 20h], rbx	
 	call	WriteFile
 
 	mov		rcx, 0
